@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="UTF-8">
     <title>Kalendarz i Zegar</title>
     <style>
         body {
@@ -27,47 +28,41 @@
     <div id="kalendarz"></div>
 
     <script>
-        function aktualizujZegar() {
-            let teraz = new Date();
-            document.getElementById("zegar").innerText = teraz.toLocaleTimeString();
-        }
-        setInterval(aktualizujZegar, 1000);
-        aktualizujZegar();
-
         let rok = new Date().getFullYear();
         let miesiac = new Date().getMonth();
 
+        function aktualizujZegar() {
+            document.getElementById("zegar").innerText = new Date().toLocaleTimeString();
+        }
+
         function wyswietlKalendarz() {
-            let dniWMiesiacu = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-            let nazwyMiesiecy = ["Styczen", "Luty", "Marzec", "Kwiecien", "Maj", "Czerwiec", "Lipiec", "Sierpien", "Wrzesien", "Pazdziernik", "Listopad", "Grudzien"];
-            if (miesiac == 1 && ((rok % 4 == 0 && rok % 100 != 0) || (rok % 400 == 0))) {
-                dniWMiesiacu[1] = 29;
-            }
+            const dniWMiesiacu = [31, (rok % 4 === 0 && (rok % 100 !== 0 || rok % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            const nazwyMiesiecy = ["Styczen", "Luty", "Marzec", "Kwiecien", "Maj", "Czerwiec", "Lipiec", "Sierpien", "Wrzesien", "Pazdziernik", "Listopad", "Grudzien"];
+
             let pierwszyDzien = new Date(rok, miesiac, 1).getDay();
             let dzis = new Date();
-            let wynik = `<h3>${nazwyMiesiecy[miesiac]} ${rok}</h3><table>`;
-            wynik += "<tr><th>Pn</th><th>Wt</th><th>Śr</th><th>Cz</th><th>Pt</th><th>So</th><th>Nd</th></tr><tr>";
 
+            let wynik = `<h3>${nazwyMiesiecy[miesiac]} ${rok}</h3><table><tr><th>Pn</th><th>Wt</th><th>Śr</th><th>Cz</th><th>Pt</th><th>So</th><th>Nd</th></tr><tr>`;
             let startOffset = (pierwszyDzien === 0 ? 6 : pierwszyDzien - 1);
-            for (let i = 0; i < startOffset; i++) {
-                wynik += "<td></td>";
-            }
+
+            for (let i = 0; i < startOffset; i++) wynik += "<td></td>";
             for (let d = 1; d <= dniWMiesiacu[miesiac]; d++) {
-                if ((startOffset + d - 1) % 7 === 0 && d !== 1) {
-                    wynik += "</tr><tr>";
-                }
-                let klasa = (d === dzis.getDate() && miesiac === dzis.getMonth() && rok === dzis.getFullYear()) ? "dzisiaj" : "";
-                wynik += `<td class='${klasa}'>${d}</td>`;
+                if ((startOffset + d - 1) % 7 === 0 && d !== 1) wynik += "</tr><tr>";
+                wynik += `<td class="${(d === dzis.getDate() && miesiac === dzis.getMonth() && rok === dzis.getFullYear()) ? 'dzisiaj' : ''}">${d}</td>`;
             }
             wynik += "</tr></table>";
             document.getElementById("kalendarz").innerHTML = wynik;
         }
+
         function zmienMiesiac(kierunek) {
             miesiac += kierunek;
             if (miesiac < 0) { miesiac = 11; rok--; }
             if (miesiac > 11) { miesiac = 0; rok++; }
             wyswietlKalendarz();
         }
+
+        setInterval(aktualizujZegar, 1000);
+        aktualizujZegar();
         wyswietlKalendarz();
     </script>
 </body>
