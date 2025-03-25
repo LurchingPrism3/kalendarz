@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalendarz i Zegar</title>
     <style>
         body {
@@ -42,7 +39,7 @@
 
         function wyswietlKalendarz() {
             let dniWMiesiacu = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-            let nazwyMiesiecy = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+            let nazwyMiesiecy = ["Styczen", "Luty", "Marzec", "Kwiecien", "Maj", "Czerwiec", "Lipiec", "Sierpien", "Wrzesien", "Pazdziernik", "Listopad", "Grudzien"];
             if (miesiac == 1 && ((rok % 4 == 0 && rok % 100 != 0) || (rok % 400 == 0))) {
                 dniWMiesiacu[1] = 29;
             }
@@ -51,33 +48,26 @@
             let wynik = `<h3>${nazwyMiesiecy[miesiac]} ${rok}</h3><table>`;
             wynik += "<tr><th>Pn</th><th>Wt</th><th>Śr</th><th>Cz</th><th>Pt</th><th>So</th><th>Nd</th></tr><tr>";
 
-            // Dodajemy puste komórki na początek miesiąca
-            // Zmiana w tym miejscu: dodanie odpowiedniej liczby pustych komórek, aby 1. dzień znalazł się we właściwej kolumnie.
-            let startOffset = (pierwszyDzien === 0 ? 6 : pierwszyDzien - 1); // Niedziela to 0, więc to będzie 6
+            let startOffset = (pierwszyDzien === 0 ? 6 : pierwszyDzien - 1);
             for (let i = 0; i < startOffset; i++) {
                 wynik += "<td></td>";
             }
-
-            // Dodajemy dni miesiąca
             for (let d = 1; d <= dniWMiesiacu[miesiac]; d++) {
                 if ((startOffset + d - 1) % 7 === 0 && d !== 1) {
-                    wynik += "</tr><tr>"; // Zaczynamy nowy tydzień
+                    wynik += "</tr><tr>";
                 }
                 let klasa = (d === dzis.getDate() && miesiac === dzis.getMonth() && rok === dzis.getFullYear()) ? "dzisiaj" : "";
                 wynik += `<td class='${klasa}'>${d}</td>`;
             }
-
             wynik += "</tr></table>";
             document.getElementById("kalendarz").innerHTML = wynik;
         }
-
         function zmienMiesiac(kierunek) {
             miesiac += kierunek;
             if (miesiac < 0) { miesiac = 11; rok--; }
             if (miesiac > 11) { miesiac = 0; rok++; }
             wyswietlKalendarz();
         }
-
         wyswietlKalendarz();
     </script>
 </body>
