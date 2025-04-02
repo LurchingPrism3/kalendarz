@@ -32,9 +32,9 @@
             return ((rok % 4 == 0) && ((rok % 100 != 0) || (rok % 400 == 0)));
         }
 
-        var aktualnaData = new Date();
-        var aktualnyMiesiac = currentDate.getMonth();
-        var aktualnyRok = currentDate.getFullYear();
+        var currentDate = new Date();
+        var currentMonth = currentDate.getMonth();
+        var currentYear= currentDate.getFullYear();
 
         function printCalendar(rok, miesiac) {
             var tempDate = new Date(rok, miesiac, 1);
@@ -73,8 +73,8 @@
                 break;
             }
 
-            var kalendarzDiv = document.getElementById("kalendarz");
-            kalendarzDiv.innerHTML = "";
+            var calendarDiv = document.getElementById("kalendarz");
+            calendarDiv.innerHTML = "";
 
             var table = "<table><tr><td colspan='7' align='center' bgcolor='yellow'>" + nazwaMiesiaca + " " + rok + "</td></tr>";
             table += "<tr><td>Pn</td><td>Wt</td><td>Śr</td><td>Cz</td><td>Pt</td><td>So</td><td>Nd</td></tr><tr>";
@@ -90,7 +90,7 @@
             }
 
             table += "</tr></table>";
-            kalendarzDiv.innerHTML = table;
+            calendarDiv.innerHTML = table;
         }
 
         function zmienMiesiac(kierunek) {
