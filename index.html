@@ -32,9 +32,9 @@
             return ((rok % 4 == 0) && ((rok % 100 != 0) || (rok % 400 == 0)));
         }
 
-        var currentDate = new Date();
-        var currentMonth = currentDate.getMonth();
-        var currentYear = currentDate.getFullYear();
+        var aktualnaData = new Date();
+        var aktualnyMiesiac = currentDate.getMonth();
+        var aktualnyRok = currentDate.getFullYear();
 
         function printCalendar(rok, miesiac) {
             var tempDate = new Date(rok, miesiac, 1);
@@ -47,22 +47,34 @@
             var nazwaMiesiaca;
             
             switch (miesiac) {
-                case 0: nazwaMiesiaca = "Styczeń"; dniWMiesiacu = 31; break;
-                case 1: nazwaMiesiaca = "Luty"; dniWMiesiacu = rokPrzestepny(rok) ? 29 : 28; break;
-                case 2: nazwaMiesiaca = "Marzec"; dniWMiesiacu = 31; break;
-                case 3: nazwaMiesiaca = "Kwiecień"; dniWMiesiacu = 30; break;
-                case 4: nazwaMiesiaca = "Maj"; dniWMiesiacu = 31; break;
-                case 5: nazwaMiesiaca = "Czerwiec"; dniWMiesiacu = 30; break;
-                case 6: nazwaMiesiaca = "Lipiec"; dniWMiesiacu = 31; break;
-                case 7: nazwaMiesiaca = "Sierpień"; dniWMiesiacu = 31; break;
-                case 8: nazwaMiesiaca = "Wrzesień"; dniWMiesiacu = 30; break;
-                case 9: nazwaMiesiaca = "Październik"; dniWMiesiacu = 31; break;
-                case 10: nazwaMiesiaca = "Listopad"; dniWMiesiacu = 30; break;
-                case 11: nazwaMiesiaca = "Grudzień"; dniWMiesiacu = 31; break;
+                case 0: nazwaMiesiaca = "Styczeń"; dniWMiesiacu = 31;
+                break;
+                case 1: nazwaMiesiaca = "Luty"; dniWMiesiacu = rokPrzestepny(rok) ? 29 : 28;
+                break;
+                case 2: nazwaMiesiaca = "Marzec"; dniWMiesiacu = 31;
+                break;
+                case 3: nazwaMiesiaca = "Kwiecień"; dniWMiesiacu = 30;
+                break;
+                case 4: nazwaMiesiaca = "Maj"; dniWMiesiacu = 31;
+                break;
+                case 5: nazwaMiesiaca = "Czerwiec"; dniWMiesiacu = 30;
+                break;
+                case 6: nazwaMiesiaca = "Lipiec"; dniWMiesiacu = 31;
+                break;
+                case 7: nazwaMiesiaca = "Sierpień"; dniWMiesiacu = 31;
+                break;
+                case 8: nazwaMiesiaca = "Wrzesień"; dniWMiesiacu = 30;
+                break;
+                case 9: nazwaMiesiaca = "Październik"; dniWMiesiacu = 31;
+                break;
+                case 10: nazwaMiesiaca = "Listopad"; dniWMiesiacu = 30;
+                break;
+                case 11: nazwaMiesiaca = "Grudzień"; dniWMiesiacu = 31;
+                break;
             }
 
-            var calendarDiv = document.getElementById("kalendarz");
-            calendarDiv.innerHTML = "";
+            var kalendarzDiv = document.getElementById("kalendarz");
+            kalendarzDiv.innerHTML = "";
 
             var table = "<table><tr><td colspan='7' align='center' bgcolor='yellow'>" + nazwaMiesiaca + " " + rok + "</td></tr>";
             table += "<tr><td>Pn</td><td>Wt</td><td>Śr</td><td>Cz</td><td>Pt</td><td>So</td><td>Nd</td></tr><tr>";
@@ -78,7 +90,7 @@
             }
 
             table += "</tr></table>";
-            calendarDiv.innerHTML = table;
+            kalendarzDiv.innerHTML = table;
         }
 
         function zmienMiesiac(kierunek) {
@@ -93,7 +105,6 @@
             printCalendar(currentYear, currentMonth);
         }
 
-        // Zegar w prostszej wersji
         function aktualizujZegar() {
             let teraz = new Date();
             document.getElementById("zegar").innerText = teraz.toLocaleTimeString();
