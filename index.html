@@ -47,18 +47,42 @@
             var nazwaMiesiaca;
 
             switch (miesiac) {
-                case 0: nazwaMiesiaca = "Styczeń"; dniWMiesiacu = 31; break;
-                case 1: nazwaMiesiaca = "Luty"; dniWMiesiacu = rokPrzestepny(rok) ? 29 : 28; break;
-                case 2: nazwaMiesiaca = "Marzec"; dniWMiesiacu = 31; break;
-                case 3: nazwaMiesiaca = "Kwiecień"; dniWMiesiacu = 30; break;
-                case 4: nazwaMiesiaca = "Maj"; dniWMiesiacu = 31; break;
-                case 5: nazwaMiesiaca = "Czerwiec"; dniWMiesiacu = 30; break;
-                case 6: nazwaMiesiaca = "Lipiec"; dniWMiesiacu = 31; break;
-                case 7: nazwaMiesiaca = "Sierpień"; dniWMiesiacu = 31; break;
-                case 8: nazwaMiesiaca = "Wrzesień"; dniWMiesiacu = 30; break;
-                case 9: nazwaMiesiaca = "Październik"; dniWMiesiacu = 31; break;
-                case 10: nazwaMiesiaca = "Listopad"; dniWMiesiacu = 30; break;
-                case 11: nazwaMiesiaca = "Grudzień"; dniWMiesiacu = 31; break;
+                case 0: nazwaMiesiaca = "Styczeń";
+                        dniWMiesiacu = 31;
+                        break;
+                case 1: nazwaMiesiaca = "Luty";
+                        dniWMiesiacu = rokPrzestepny(rok) ? 29 : 28;
+                        break;
+                case 2: nazwaMiesiaca = "Marzec";
+                        dniWMiesiacu = 31;
+                        break;
+                case 3: nazwaMiesiaca = "Kwiecień";
+                        dniWMiesiacu = 30;
+                        break;
+                case 4: nazwaMiesiaca = "Maj";
+                        dniWMiesiacu = 31;
+                        break;
+                case 5: nazwaMiesiaca = "Czerwiec";
+                        dniWMiesiacu = 30;
+                        break;
+                case 6: nazwaMiesiaca = "Lipiec";
+                        dniWMiesiacu = 31;
+                        break;
+                case 7: nazwaMiesiaca = "Sierpień";
+                        dniWMiesiacu = 31;
+                        break;
+                case 8: nazwaMiesiaca = "Wrzesień";
+                        dniWMiesiacu = 30;
+                        break;
+                case 9: nazwaMiesiaca = "Październik";
+                        dniWMiesiacu = 31;
+                        break;
+                case 10: nazwaMiesiaca = "Listopad";
+                         dniWMiesiacu = 30;
+                         break;
+                case 11: nazwaMiesiaca = "Grudzień";
+                         dniWMiesiacu = 31;
+                         break;
             }
 
             var calendarDiv = document.getElementById("kalendarz");
